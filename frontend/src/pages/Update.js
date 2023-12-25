@@ -46,6 +46,7 @@ const UpdateForm = () => {
         .then((response) => {
             response.json()
             .then(data => console.log(data))
+            alert("updated successfully")
         })
         .catch(err => {console.log(err)})
     };
