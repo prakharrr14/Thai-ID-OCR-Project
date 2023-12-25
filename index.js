@@ -12,7 +12,6 @@ const multer = require('multer')
 app.use(express.urlencoded({extended:true}));
 app.use(express.json());
 app.use(cors());
-app.use(express.static(path.join(__dirname, './frontend/build')))
 
 app.use('/citizens',citizenRoutes);
 

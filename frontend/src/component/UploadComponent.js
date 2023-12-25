@@ -20,7 +20,7 @@ export default function UploadComponent() {
     }
     const data = await response.json();
     console.log(data)
-    alert(`id: ${data.id}`)
+    alert(`copy this id for future refrence: ${data.id}`)
   }
 
   const handleFileChange = (e) => {
