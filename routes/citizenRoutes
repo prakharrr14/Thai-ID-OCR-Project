@@ -5,13 +5,14 @@ const ObjectId = require('mongodb').ObjectId;
 
 router.get('/', async (req, res) => {
     try {
-      const citizens = await Citizen.find({});
-      res.status(200).json(citizens);
+      const activeCitizens = await Citizen.find({ status: 'ACTIVE' });
+      res.status(200).json(activeCitizens);
     } catch (err) {
       console.error(err);
-      res.status(500).json({ message: 'Error retrieving citizens' });
+      res.status(500).json({ message: 'Error retrieving active citizens' });
     }
   });
+  
 
   router.get('/:identification_number', async (req, res) => {
     try {
