@@ -10,6 +10,7 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import Update from './pages/Update';
+import Delete from './pages/Delete';
 
 const router = createBrowserRouter([
   {
@@ -26,7 +27,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/citizens/delete",
-    element: <div>delete</div>,
+    element: <Delete/>,
   }
 ]);
 

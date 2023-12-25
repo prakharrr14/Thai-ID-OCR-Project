@@ -29,72 +29,71 @@ router.get('/', async (req, res) => {
   
 
   
-//   router.put('/:identification_number', async (req, res) => {
-//     try {
-//       const identificationNumber = req.params.identification_number;
-//       const updateBody = req.body;
+  router.put('/:identification_number', async (req, res) => {
+    try {
+        const identificationNumber = req.params.identification_number;
+        const updateBody = req.body;
+    
+        const options = {
+          upsert: true,
+          new: true,
+          useFindAndModify: true,
+        };
+    
+        const result = await Citizen.findOneAndUpdate(
+          { identification_number: identificationNumber },
+          updateBody,
+          options
+        );
+        res.status(200).json(result);
+    } catch (err) {
+      console.error(err);
+      res.status(500).json({ message: 'Error updating citizen' });
+    }
+  });
   
-//       console.log(updateBody);
-//       const result = await Citizen.findOneAndUpdate(
-//         { identification_number: identificationNumber },
-//         updateBody,
-//         { upsert: true, new: true, useFindAndModify: true }
-//       );
-//       res.status(200).json(result);
-//     } catch (err) {
-//       console.error(err);
-//       res.status(500).json({ message: 'Error updating citizen' });
-//     }
-//   });
-  
-  router.put("/:id", async (req, res) => {
-    const data = req.body;
-    const paramsId = req.params.id;
-    const filter = { _id: new ObjectId(paramsId) };
-    const options = { upsert: true };
-    const updateDoc = {
-      $set: {
-        name: data.name,
-        last_name: data.last_name,
-        identification_number: data.identification_number,
-        date_of_birth: data.data_of_birth,
-        date_of_issue: data.data_of_issue,
-        date_of_expiry: data.data_of_expiry,
-      },
-    };
-    const result = await Citizen.updateOne(filter, updateDoc, options);
-    res.send(result);
-})
+//   router.put("/:id", async (req, res) => {
+//     const data = req.body;
+//     const paramsId = req.params.id;
+//     const filter = { _id: new ObjectId(paramsId) };
+//     const options = { upsert: true };
+//     const updateDoc = {
+//       $set: {
+//         name: data.name,
+//         last_name: data.last_name,
+//         identification_number: data.identification_number,
+//         date_of_birth: data.data_of_birth,
+//         date_of_issue: data.data_of_issue,
+//         date_of_expiry: data.data_of_expiry,
+//       },
+//     };
+//     const result = await Citizen.updateOne(filter, updateDoc, options);
+//     res.send(result);
+// })
   
 
-//   router.delete('/:identification_number', async (req, res) => {
-//     try {
-//       const identificationNumber = req.params.identification_number;
-//       const updateBody = { status: 'INACTIVE' };
+router.delete('/:identification_number', async (req, res) => {
+    try {
+      const identificationNumber = req.params.identification_number;
+      const updateBody = { status: 'INACTIVE' };
   
-//       const options = {
-//         upsert: true,
-//         new: true,
-//         useFindAndModify: true,
-//       };
+      const options = {
+        upsert: true,
+        new: true,
+        useFindAndModify: true,
+      };
   
-//       const result = await Citizen.findOneAndUpdate(
-//         { identification_number: identificationNumber },
-//         updateBody,
-//         options,
-//         (err, result) => {
-//           if (err) {
-//             console.error(err);
-//             res.status(500).json({ message: 'Error updating citizen' });
-//           } else {
-//             res.status(200).json(result.value);
-//           }
-//         }
-//       );
-//     } catch (err) {
-//       console.error(err);
-//       res.status(500).json({ message: 'Error updating citizen' });
-//     }
-//   });
+      const result = await Citizen.findOneAndUpdate(
+        { identification_number: identificationNumber },
+        updateBody,
+        options
+      );
+      res.status(200).json(result);
+    } catch (err) {
+      console.error(err);
+      res.status(500).json({ message: 'Error updating citizen' });
+    }
+  });
+  
 
 module.exports = router

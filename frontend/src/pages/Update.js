@@ -39,7 +39,7 @@ const UpdateForm = () => {
       e.preventDefault();
       console.log("hhh")
       console.log(formData)
-      fetch("http://localhost:5001/citizens/"+formData._id, {
+      fetch("http://localhost:5001/citizens/"+identificationNumber, {
             method: 'PUT',
             body: formData,
         })
