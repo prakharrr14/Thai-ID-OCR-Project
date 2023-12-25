@@ -3,7 +3,9 @@ const mongoose = require('mongoose');
 const CitizenSchema = new mongoose.Schema({
     identification_number:{
         type:String,
-        required:[true,"Can't be blank"]
+        required:[true,"Can't be blank"],
+        unique:true,
+        index:true,
     },
     name:{
         type:String,
@@ -15,15 +17,15 @@ const CitizenSchema = new mongoose.Schema({
 
     },
     date_of_birth:{
-        type:Date,
+        type:String,
         required:[true,"Can't be blank"]
     },
     date_of_issue:{
-        type:Date,
+        type:String,
         required:[true,"Can't be blank"]
     },
     date_of_expiry:{
-        type:Date,
+        type:String,
         required:[true,"Can't be blank"]
     },
     status:{

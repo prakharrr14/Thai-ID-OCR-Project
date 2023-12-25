@@ -1,0 +1,100 @@
+const router = require('express').Router();
+const Citizen = require('../models/Citizen');
+const ObjectId = require('mongodb').ObjectId;
+
+
+router.get('/', async (req, res) => {
+    try {
+      const citizens = await Citizen.find({});
+      res.status(200).json(citizens);
+    } catch (err) {
+      console.error(err);
+      res.status(500).json({ message: 'Error retrieving citizens' });
+    }
+  });
+
+  router.get('/:identification_number', async (req, res) => {
+    try {
+      const citizen = await Citizen.findOne({ identification_number: req.params.identification_number });
+      if (citizen) {
+        res.status(200).json(citizen);
+      } else {
+        res.status(404).json({ message: 'Citizen not found' });
+      }
+    } catch (err) {
+      console.error(err);
+      res.status(500).json({ message: 'Error retrieving citizen' });
+    }
+  });
+  
+
+  
+//   router.put('/:identification_number', async (req, res) => {
+//     try {
+//       const identificationNumber = req.params.identification_number;
+//       const updateBody = req.body;
+  
+//       console.log(updateBody);
+//       const result = await Citizen.findOneAndUpdate(
+//         { identification_number: identificationNumber },
+//         updateBody,
+//         { upsert: true, new: true, useFindAndModify: true }
+//       );
+//       res.status(200).json(result);
+//     } catch (err) {
+//       console.error(err);
+//       res.status(500).json({ message: 'Error updating citizen' });
+//     }
+//   });
+  
+  router.put("/:id", async (req, res) => {
+    const data = req.body;
+    const paramsId = req.params.id;
+    const filter = { _id: new ObjectId(paramsId) };
+    const options = { upsert: true };
+    const updateDoc = {
+      $set: {
+        name: data.name,
+        last_name: data.last_name,
+        identification_number: data.identification_number,
+        date_of_birth: data.data_of_birth,
+        date_of_issue: data.data_of_issue,
+        date_of_expiry: data.data_of_expiry,
+      },
+    };
+    const result = await Citizen.updateOne(filter, updateDoc, options);
+    res.send(result);
+})
+  
+
+//   router.delete('/:identification_number', async (req, res) => {
+//     try {
+//       const identificationNumber = req.params.identification_number;
+//       const updateBody = { status: 'INACTIVE' };
+  
+//       const options = {
+//         upsert: true,
+//         new: true,
+//         useFindAndModify: true,
+//       };
+  
+//       const result = await Citizen.findOneAndUpdate(
+//         { identification_number: identificationNumber },
+//         updateBody,
+//         options,
+//         (err, result) => {
+//           if (err) {
+//             console.error(err);
+//             res.status(500).json({ message: 'Error updating citizen' });
+//           } else {
+//             res.status(200).json(result.value);
+//           }
+//         }
+//       );
+//     } catch (err) {
+//       console.error(err);
+//       res.status(500).json({ message: 'Error updating citizen' });
+//     }
+//   });
+
+module.exports = router

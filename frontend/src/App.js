@@ -1,10 +1,13 @@
 import './App.css';
+import NavBar from './component/NavBar';
+import UploadComponent from './component/UploadComponent';
+
 
 function App() {
   return (
-    <div className="App">
-      HI
-    </div>
+    <>
+      <NavBar/>
+    </>
   );
 }
 
