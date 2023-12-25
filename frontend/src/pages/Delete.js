@@ -14,6 +14,7 @@ const DeleteForm = () => {
         .then((response) => {
             response.json()
             .then(data => console.log(data))
+            alert("deleted successfully")
         })
         .catch(err => {console.log(err)})
     };
