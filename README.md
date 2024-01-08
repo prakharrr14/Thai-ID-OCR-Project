@@ -22,6 +22,7 @@ https://thaiapp.vercel.app/
 
 - <b>Frontend</b> - React.js
 - <b>Backend</b> - Node.js
+- <b>Database</b> - MongoDB Atlas
 
 ---
 
