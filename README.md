@@ -1,5 +1,14 @@
 # Thai-ID-OCR-App
-An application that utilizes Optical Character Recognition (OCR) to analyze thai id cards and extract relevant data. This app integrates with Google Vision API for OCR processing and then parse the response to interpret the OCR results, returning the final data in JSON format. 
-Here, we have taken MongoDB database and saved the results in the database. We have also implemented CRUD api to create the ocr data, modify some data, filter them or delete certain id cards.
-In this application I have used Google Vision Api to extract the Text in the form of a string from the uploaded image. I have also applied some pre-processing and post-processing to the image. Then I have generated a logic using regular expressions which extracts the useful data from the string retreived from the Google Vision API.
-This data is then converted in the form of an object and then all the save, fetch,delete and update operations are performed.
+- This application employs Optical Character Recognition (OCR) to analyze <b>Thai ID cards</b> and extract pertinent information. 
+- <b>Google Vision API</b> is utilized to extract text from the uploaded image in string form.
+- <b>Pre-processing</b> techniques are applied on the input image to increase the quality of the image.
+- <b>Post-processing</b> techniques are applied to increase the accuracy of the retreived string.
+- A self- developed logic is employed using <b>regular expressions</b> to extract valuable information like Name, DOB, ID No., etc from the retreived string.
+- The valuable data is then transformed into a <b>JSON</b> format.
+- Users can <b>Upload, Search</b> or <b>Delete</b> Id cards from the database.
+- It supports <b>png, jpg, jpeg</b> and <b>gifs</b>.
+
+---
+
+## Deployment Link
+https://thaiapp.vercel.app/
